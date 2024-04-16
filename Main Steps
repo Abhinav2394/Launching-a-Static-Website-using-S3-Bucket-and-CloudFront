@@ -1,0 +1,38 @@
+Launching a Static Website using S3 Bucket and CloudFront
+1. Create S3 Bucket:
+    * Go to the AWS Management Console and navigate to the S3 service.
+    * Click on "Create bucket".
+    * Enter the domain name as the bucket name (e.g., example.com). Ensure the bucket name is globally unique.
+    * Uncheck all "Block Access" options and enable ACL.
+    * Click "Create bucket".
+2. Upload Web Content:
+    * Open the newly created bucket and upload all files and folders of your web content. 
+    * Select all content, click on "Actions", and then click on "Make public using ACL".
+3. Configure Static Website Hosting:
+    * Go to the "Properties" tab of your bucket and scroll to the bottom.
+    * Click on "Static Website Hosting" and enable it.
+    * Enter the name of your index file and error file (if any).
+    * Save the configuration.
+4. Obtain Website URL:
+    * Once the configuration is saved, you will get a website URL. You can check your web content with this link.
+5. Configure Route 53:
+    * Go to the Route 53 service in the AWS Management Console.
+    * Create a new Hosted Zone with your domain name.
+    * Create an 'A' record and enable the "Alias" option.
+    * Choose the S3 endpoint as the Alias target and select the region where your S3 bucket is located. 
+      Once you select the correct region, you will see the name of your S3 bucket listed as an option below.
+    * Click on "Create Record".
+6. Update NS Records: 
+    * Update the NS records with your domain registrar.
+    * Remove the "." from the end of each NS record.
+7. Setup CloudFront:
+    * Go to the CloudFront service in the AWS Management Console.
+    * Click on "Create Distribution".
+    * Choose "Amazon S3" as the origin domain and click "Use website endpoint".
+    * Keep origin access public and other settings as default.
+    * Click on "Create Distribution".
+8. Access Your Website:
+    * Once the CloudFront distribution is created, your website will be accessible globally.
+
+This documentation provides a detailed guide on launching a static website using an S3 bucket and configuring CloudFront for global accessibility. 
+Follow these steps carefully to successfully deploy your static website. 
